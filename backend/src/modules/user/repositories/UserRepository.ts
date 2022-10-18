@@ -3,7 +3,6 @@ import {
   IUserRepository,
   CreateUserDTO,
   UpdateUserDTO,
-  UpdatedUserDTO,
 } from "./IUserRepository";
 
 export class UserRepository implements IUserRepository {

@@ -12,13 +12,6 @@ export type UpdateUserDTO = {
   password: string;
 };
 
-export type UpdatedUserDTO = {
-  id: string;
-  email: string;
-  username: string;
-  createdAt?: Date;
-};
-
 export interface IUserRepository {
   create({ email, username, password }: CreateUserDTO): void;
   findByEmail(email: string): any;
