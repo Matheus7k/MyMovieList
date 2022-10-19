@@ -1,0 +1,174 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "My Movie List Documentation",
+    "description": "Documentation from Movies API",
+    "contact": {
+      "email": "06matheus.oliveira@gmail.com"
+    }
+  },
+  "paths": {
+    "/user/singup":{
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "sumary": "Create a account",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "test@example.com",
+                  "username": "test example",
+                  "password": "test123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created!"
+          },
+          "500": {
+            "description": "Email/username already exists!"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "sumary": "Login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "test@example.com",
+                  "password": "test123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Login successfully!"
+          },
+          "500": {
+            "description": "Email/password invalid!"
+          }
+        }
+      }
+    },
+    "/user/update/{id}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "security": [{"bearerAuth": []}],
+        "sumary": "Update user",
+        "description": "Update user route",
+        "parameters": [
+          {
+            "id": "id",
+            "in": "path",
+            "description": "User id to update",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "username": "string",
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "test123@example.com",
+                  "username": "teste123",
+                  "password": "test123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated successfully!"
+          },
+          "401": {
+            "description": "User not found!"
+          }
+        }
+      }
+    },
+    "/user/delete/{id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "security": [{"bearerAuth": []}],
+        "sumary": "Delete user",
+        "description": "Delete user route",
+        "parameters": [
+          {
+            "id": "id",
+            "in": "path",
+            "description": "User id to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully!"
+          },
+          "401": {
+            "description": "Unauthorized!"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
