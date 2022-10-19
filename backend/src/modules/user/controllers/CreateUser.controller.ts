@@ -16,7 +16,9 @@ export class CreateUserController {
         .status(201)
         .json({ message: "User created successfully" });
     } catch (err) {
-      return response.send(err);
+      return response
+        .status(500)
+        .json({ message: "Email/username already exists!" });
     }
   }
 }
