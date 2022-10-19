@@ -65,6 +65,14 @@ export class UserRepository implements IUserRepository {
   }
 
   async delete(id: string): Promise<void> {
+    await prisma.movie.deleteMany({
+      where: {
+        User: {
+          id,
+        },
+      },
+    });
+
     await prisma.user.delete({
       where: {
         id,
